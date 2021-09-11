@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, SafeAreaView } from 'react-native';
 
 import Botao from './componentes/Botao';
+import Display from './componentes/Display';
 
 const App = () => {
+  const [valor, setValor] = useState(0);
+
   return (
     <SafeAreaView style={estilos.App}>
+      <Display valor={valor} />
+
       <View style={estilos.botoes}>
         <Botao texto='AC' />
         <Botao texto='/' />
@@ -32,12 +37,10 @@ const App = () => {
 const estilos = StyleSheet.create({
   App: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center', 
     backgroundColor: '#F5FCFF'
   },
   botoes: {
-    flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap'
   }
