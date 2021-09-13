@@ -20,10 +20,10 @@ const App = () => {
   const [valorAtual, setValorAtual] = useState(estadoInicial.valorAtual);
 
   const addDigito = useCallback((digito) => {
-    if (digito === '.' && valor.includes('.')) return;
-
     const valorDisplay = valor === '0' || limparDisplay ? '' + digito : valor + digito;
-    setValor(valorDisplay);
+
+    if (digito === '.' && !limparDisplay && valor.includes('.')) return;
+    setValor(valorDisplay.toString());
 
     if (digito !== '.') {
       const valoresCopia = [...valores];
@@ -59,7 +59,7 @@ const App = () => {
 
       valoresCopia[1] = 0;
 
-      setValor(valoresCopia[0]);
+      setValor(valoresCopia[0].toString());
       setOperacao(equals ? null : op);
       setValorAtual(equals ? 0 : 1);
       setLimparDisplay(true);
